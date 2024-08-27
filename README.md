@@ -1,2 +1,2 @@
 # MagiczEngine
-Rendering engine based on OpenGL, Inspired by P.FM.Magicz's Petz series
+Rendering engine based on OpenGL, Inspired by P.F.Magic's Petz series
