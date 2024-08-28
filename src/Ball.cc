@@ -51,8 +51,8 @@ void Ball::SetCoords(float x, float y, float z){
     _z = z;
 }
 
-void Ball::SetSize(int s){
-    _rad = static_cast<float>(s) / 4.0f;
+void Ball::SetDiameter(int s){
+    _diameter = static_cast<float>(s) / 2.0f;
 }
 
 
@@ -61,8 +61,8 @@ void Ball::GetCoords(float* x, float* y){
     *y = _y;
 }
 
-float Ball::GetSize(){
-    return _rad; //what _z in Drawable?
+float Ball::GetDiameter(){
+    return _diameter; //what _z in Drawable?
 }
 
 
@@ -74,7 +74,7 @@ void Ball::SetUniformAddr(){
 
     _x_addr = glGetUniformLocation(s_shader.GetID(), "centerX");
     _y_addr = glGetUniformLocation(s_shader.GetID(), "centerY");
-    _rad_addr = glGetUniformLocation(s_shader.GetID(), "radius");
+    _diameter_addr = glGetUniformLocation(s_shader.GetID(), "diameter");
     _fuzz_addr = glGetUniformLocation(s_shader.GetID(), "fuzz");
 
 }
@@ -90,7 +90,7 @@ void Ball::Draw(){
         return;
 
     s_shader.Use();
-    glUniform1f(_rad_addr, _rad);
+    glUniform1f(_diameter_addr, _diameter);
     glUniform1f(_x_addr, static_cast<float>(_x));
     glUniform1f(_y_addr, static_cast<float>(480 - _y));
     glUniform1f(_fuzz_addr, 0.0f);

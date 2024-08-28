@@ -51,6 +51,8 @@ void Line::SetUniformAddr(){
     _start_y_addr = glGetUniformLocation(s_shader.GetID(), "startY");
     _end_x_addr = glGetUniformLocation(s_shader.GetID(), "endX");
     _end_y_addr = glGetUniformLocation(s_shader.GetID(), "endY");
+    _start_diameter_addr = glGetUniformLocation(s_shader.GetID(), "startDiameter");
+    _end_diameter_addr = glGetUniformLocation(s_shader.GetID(), "endDiameter");
 
 }
 
@@ -70,11 +72,18 @@ void Line::Draw(){
     _startBall->GetCoords(&startX, &startY);
     _endBall->GetCoords(&endX, &endY);
 
+    float startDiameter = _startBall->GetDiameter();
+    float endDiameter = _endBall->GetDiameter();
+
     s_shader.Use();
+
     glUniform1f(_start_x_addr, startX);
     glUniform1f(_start_y_addr, startY);
     glUniform1f(_end_x_addr, endX);
     glUniform1f(_end_y_addr, endY);
+
+    glUniform1f(_start_diameter_addr, startDiameter);
+    glUniform1f(_end_diameter_addr, endDiameter);
 
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, 6);
