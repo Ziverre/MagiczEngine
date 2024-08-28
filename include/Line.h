@@ -36,7 +36,10 @@ class Line : public Drawable
         unsigned int vao, vbo, ebo;
         float _x, _y, _z; //?
 
-        int _start_x_addr, _start_y_addr, _end_x_addr, _end_y_addr, _rad_addr;
+        int _start_x_addr, _start_y_addr,
+            _end_x_addr, _end_y_addr,
+            _start_diameter_addr, _end_diameter_addr;
+
         Ball* _startBall; Ball* _endBall;
 
 

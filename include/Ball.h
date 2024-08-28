@@ -15,11 +15,11 @@ class Ball : public Drawable
         void SetCoords(int x, int y, int z);
         void SetCoords(float x, float y, float z);
 
-        void SetSize(int s);
+        void SetDiameter(int s);
 
         void GetCoords(float* x, float* y);
 
-        float GetSize();
+        float GetDiameter();
 
         //
         virtual void SetUniformAddr() override;
@@ -37,9 +37,9 @@ class Ball : public Drawable
     private:
         //variables to bind
         unsigned int vao, vbo, ebo;
-        float _x, _y, _z, _rad;
+        float _x, _y, _z, _diameter;
         //gotta see if i could optimize unicorns even further
-        int _rad_addr, _x_addr, _y_addr, _fuzz_addr;
+        int _diameter_addr, _x_addr, _y_addr, _fuzz_addr;
 
 
 };
