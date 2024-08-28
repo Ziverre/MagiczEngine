@@ -10,17 +10,22 @@ uniform float startY;
 uniform float endX;
 uniform float endY;
 
+uniform float startDiameter;
+uniform float endDiameter;
+
 void main(){
 	vec2 screen = vec2(320.0, 240.0);
 	
-	vec2 rectangle = vec2(abs(startX - endX) / 2, abs(startY - endY) / 2);
+	float biggestDiameter = max(startDiameter, endDiameter);
 	
-	vec2 center = vec2((startX + endX) / 2, (startY + endY) / 2);
+	vec2 rectangle = vec2(abs(startX - endX) / 2.0 + biggestDiameter / 2.0, abs(startY - endY) / 2.0 + biggestDiameter / 2.0);
+	
+	vec2 center = vec2((startX + endX) / 2.0, (startY + endY) / 2.0);
 	
 	vec2 normalizedCoords = vec2(center.x + rectangle.x * aPos.x, center.y + rectangle.y * aPos.y);
 	
-	normalizedCoords.x = normalizedCoords.x / screen.x - 1;
-	normalizedCoords.y = normalizedCoords.y / screen.y - 1;
+	normalizedCoords.x = normalizedCoords.x / screen.x - 1.0;
+	normalizedCoords.y = normalizedCoords.y / screen.y - 1.0;
 	
     gl_Position = vec4(normalizedCoords.x, normalizedCoords.y, 0.0, 1.0); 
 }
