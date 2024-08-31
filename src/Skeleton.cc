@@ -25,7 +25,7 @@ void Skeleton::Init(){
 
             Ball* ball = new Ball();
             ball->SetUniformAddr();
-            ball->SetSize(ballSize);
+            ball->SetDiameter(ballSize);
 
             _ballz.push_back(ball);
             _ballz_view.push_back(ball);

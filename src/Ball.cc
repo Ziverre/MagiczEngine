@@ -91,8 +91,8 @@ void Ball::Draw(){
 
     s_shader.Use();
     glUniform1f(_diameter_addr, _diameter);
-    glUniform1f(_x_addr, static_cast<float>(_x));
-    glUniform1f(_y_addr, static_cast<float>(480 - _y));
+    glUniform1f(_x_addr, _x);
+    glUniform1f(_y_addr, _y);
     glUniform1f(_fuzz_addr, 0.0f);
 
 
