@@ -2,7 +2,7 @@
 
 out vec4 fragColor;
 
-uniform float radius;
+uniform float diameter;
 uniform float centerX;
 uniform float centerY;
 uniform float fuzz;
@@ -19,6 +19,8 @@ float circle(vec2 center, vec2 coords, float radius){
 }
 
 void main(){
+	float radius = diameter / 2.0;
+	
 	vec2 coord = gl_FragCoord.xy;
 	
 	coord.x += random(vec2(coord.y - centerY + fuzz)) * fuzz;
