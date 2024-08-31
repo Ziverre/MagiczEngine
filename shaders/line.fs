@@ -25,7 +25,7 @@ void main(){
 	
 	//texture
 	
-	vec2 texUV = fract(translate / vec2(128.0));
+	vec2 texUV = fract(translate / vec2(64.0));
 	
 	//
 	
