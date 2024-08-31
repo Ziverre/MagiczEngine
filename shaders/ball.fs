@@ -1,3 +1,5 @@
+//TO DO: Clean up code and make it more readable
+
 #version 330
 
 out vec4 fragColor;
