@@ -28,6 +28,8 @@ class Shader
 
         unsigned int GetID();
 
+        int GetUniform(const std::string& name);
+
         void SetBool(const std::string& name, bool value);
         void SetFloat(const std::string& name, float value);
         void SetInt(const std::string& name, int value);

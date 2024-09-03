@@ -7,6 +7,15 @@
 #include <cmath>
 #include <iostream>
 
+struct sLineUniformAddress {
+    int start_x = -1;
+    int start_y = -1;
+    int end_x = -1;
+    int end_y = -1;
+    int start_diameter = -1;
+    int end_diameter = -1;
+};
+
 class Line : public Drawable
 {
     public:
@@ -19,7 +28,7 @@ class Line : public Drawable
         void SetStartAndEndBalls(Ball* startBall, Ball* endBall);
 
         //
-        virtual void SetUniformAddr() override;
+        void SetUniformAddr();
 
         virtual void Update() override;
         virtual void Draw() override;
@@ -39,6 +48,8 @@ class Line : public Drawable
         int _start_x_addr, _start_y_addr,
             _end_x_addr, _end_y_addr,
             _start_diameter_addr, _end_diameter_addr;
+
+        sLineUniformAddress _uniform;
 
         Ball* _startBall; Ball* _endBall;
 

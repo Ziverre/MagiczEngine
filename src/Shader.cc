@@ -123,6 +123,10 @@ unsigned int Shader::GetID(){
     return _id;
 }
 
+int Shader::GetUniform(const std::string& name){
+    return glGetUniformLocation(_id, name.c_str());
+}
+
 void Shader::SetBool(const std::string& name, bool value){
     glUniform1i(glGetUniformLocation(_id, name.c_str()), (int)value);
 }

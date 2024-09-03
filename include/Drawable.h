@@ -10,7 +10,7 @@ class Drawable
 
         Drawable();
 
-        virtual void SetUniformAddr() = 0;
+        //virtual void SetUniformAddr() = 0;
 
         virtual float GetZ() = 0;
 

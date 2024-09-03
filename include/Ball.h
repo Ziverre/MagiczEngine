@@ -4,6 +4,13 @@
 #include "Drawable.h"
 #include <cmath>
 
+struct sBallUniformAddress {
+    int diameter = -1;
+    int x = -1;
+    int y = -1;
+    int fuzz = -1;
+};
+
 class Ball : public Drawable
 {
     public:
@@ -22,7 +29,7 @@ class Ball : public Drawable
         float GetDiameter();
 
         //
-        virtual void SetUniformAddr() override;
+        void SetUniformAddr();
 
         virtual void Update() override;
         virtual void Draw() override;
@@ -38,8 +45,8 @@ class Ball : public Drawable
         //variables to bind
         unsigned int vao, vbo, ebo;
         float _x, _y, _z, _diameter;
-        //gotta see if i could optimize unicorns even further
-        int _diameter_addr, _x_addr, _y_addr, _fuzz_addr;
+
+        sBallUniformAddress _uniform;
 
 
 };

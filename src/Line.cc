@@ -33,6 +33,8 @@ Line::Line() : _startBall(nullptr), _endBall(nullptr)
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+
+    SetUniformAddr();
 }
 
 

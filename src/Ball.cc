@@ -35,6 +35,8 @@ Ball::Ball()
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+
+    SetUniformAddr();
 }
 
 
@@ -62,23 +64,21 @@ void Ball::GetCoords(float* x, float* y){
 }
 
 float Ball::GetDiameter(){
-    return _diameter; //what _z in Drawable?
+    return _diameter;
 }
 
-
-//
 void Ball::SetUniformAddr(){
-    //TO DO: ... (Is getting uniform address outside render loop even necessary?)
     if (!s_shader.isInitialized())
         return;
 
-    _x_addr = glGetUniformLocation(s_shader.GetID(), "centerX");
-    _y_addr = glGetUniformLocation(s_shader.GetID(), "centerY");
-    _diameter_addr = glGetUniformLocation(s_shader.GetID(), "diameter");
-    _fuzz_addr = glGetUniformLocation(s_shader.GetID(), "fuzz");
+    _uniform.diameter = s_shader.GetUniform("diameter");
+    _uniform.fuzz = s_shader.GetUniform("fuzz");
+    _uniform.x = s_shader.GetUniform("centerX");
+    _uniform.y = s_shader.GetUniform("centerY");
 
 }
 
+//
 
 void Ball::Update(){ //TO DO: Re-think what this function gonna do
 
@@ -90,10 +90,10 @@ void Ball::Draw(){
         return;
 
     s_shader.Use();
-    glUniform1f(_diameter_addr, _diameter);
-    glUniform1f(_x_addr, _x);
-    glUniform1f(_y_addr, _y);
-    glUniform1f(_fuzz_addr, 0.0f);
+    glUniform1f(_uniform.diameter, _diameter);
+    glUniform1f(_uniform.x, _x);
+    glUniform1f(_uniform.y, _y);
+    glUniform1f(_uniform.fuzz, 0.0f);
 
 
     glBindVertexArray(vao);

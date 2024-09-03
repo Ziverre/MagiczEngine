@@ -70,7 +70,7 @@ int main( int argc, char * argv[] )
 
     Texture tex;
 
-    tex.Init("art/texture/flower2.bmp");
+    tex.Init("art/texture/hair24.bmp");
     tex.Use();
 
 
@@ -83,23 +83,17 @@ int main( int argc, char * argv[] )
     Ball* ball1 = new Ball();
     Ball* ball2 = new Ball();
 
-    ball1->SetUniformAddr();
-    ball2->SetUniformAddr();
+    ball1->SetDiameter(200);
+    ball2->SetDiameter(200);
 
-    ball1->SetSize(50);
-    ball2->SetSize(100);
-
-    ball1->SetCoords(200.f, 240.f, 0.f);
-    ball2->SetCoords(340.f, 240.f, 0.f);
+    ball1->SetCoords(150.f, 200.f, 0.f);
+    ball2->SetCoords(490.f, 200.f, 0.f);
 
     //line
 
     Line* line = new Line();
-    line->SetUniformAddr();
 
     line->SetStartAndEndBalls(ball1, ball2);
-
-
 
     /*END TEMPORARY*/
 

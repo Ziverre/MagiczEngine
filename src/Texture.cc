@@ -13,7 +13,14 @@ void Texture::Init(std::string fileName){
     //TO DO: Implement the actual IO (currently mimicking)
 
     Bitmap bmp;
+
     int width = 4, height = 4;
+    unsigned char transparentData[] = {
+        255, 255, 255,  255, 255, 255,  255, 255, 255,  255, 255, 255,
+        255, 255, 255,  255, 255, 255,  255, 255, 255,  255, 255, 255,
+        255, 255, 255,  255, 255, 255,  255, 255, 255,  255, 255, 255,
+        255, 255, 255,  255, 255, 255,  255, 255, 255,  255, 255, 255
+    };
 
     bmp.ReadBMP(fileName);
 
@@ -25,13 +32,6 @@ void Texture::Init(std::string fileName){
     }
     else
     {
-        width = 4; height = 4;
-        unsigned char transparentData[] = {
-            255, 255, 255,  255, 255, 255,  255, 255, 255,  255, 255, 255,
-            255, 255, 255,  255, 255, 255,  255, 255, 255,  255, 255, 255,
-            255, 255, 255,  255, 255, 255,  255, 255, 255,  255, 255, 255,
-            255, 255, 255,  255, 255, 255,  255, 255, 255,  255, 255, 255
-        };
         data = transparentData;
     }
 
