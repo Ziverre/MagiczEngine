@@ -4,9 +4,7 @@ Shader Ball::s_shader;
 
 Ball::Ball()
 {
-    if (!s_shader.isInitialized()){
-        s_shader.Init("shaders/ball.vs", "shaders/ball.fs");
-    }
+    s_shader.Init("shaders/ball.vs", "shaders/ball.fs");
 
     //TO DO: Move these into a single static variable
 
@@ -68,7 +66,7 @@ float Ball::GetDiameter(){
 }
 
 void Ball::SetUniformAddr(){
-    if (!s_shader.isInitialized())
+    if (!s_shader.IsInitialized())
         return;
 
     _uniform.diameter = s_shader.GetUniform("diameter");
@@ -86,7 +84,7 @@ void Ball::Update(){ //TO DO: Re-think what this function gonna do
 
 void Ball::Draw(){
 
-    if (!s_shader.isInitialized())
+    if (!s_shader.IsInitialized())
         return;
 
     s_shader.Use();

@@ -4,6 +4,9 @@ Shader::Shader(){};
 
 void Shader::Init(const char* vPath, const char* fPath)
 {
+    if (IsInitialized())
+        return;
+
     _initialized = false;
     _vertex = 0; _fragment = 0;
     //f = fragment, v = vertex
@@ -102,7 +105,7 @@ unsigned int Shader::Compile(const char* shaderCode, int type){
     return shader;
 }
 
-bool Shader::isInitialized(){
+bool Shader::IsInitialized(){
     return _initialized;
 }
 
@@ -111,7 +114,7 @@ bool Shader::isInitialized(){
 */
 
 void Shader::Use(){
-    if (isInitialized())
+    if (IsInitialized())
         glUseProgram(_id);
 }
 

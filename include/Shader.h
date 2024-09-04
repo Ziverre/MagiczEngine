@@ -22,7 +22,7 @@ class Shader
         //TO DO: Move this method to a class responsible for handling file read/write
         std::string LoadFromFile(const char* path, bool* success);
 
-        bool isInitialized();
+        bool IsInitialized();
 
         void Use();
 

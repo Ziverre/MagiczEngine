@@ -4,9 +4,7 @@ Shader Line::s_shader;
 
 Line::Line() : _startBall(nullptr), _endBall(nullptr)
 {
-    if (!s_shader.isInitialized()){
-        s_shader.Init("shaders/line.vs", "shaders/line.fs");
-    }
+    s_shader.Init("shaders/line.vs", "shaders/line.fs");
 
     //TO DO: Move these into a single static variable
 
@@ -46,15 +44,15 @@ void Line::SetStartAndEndBalls(Ball* startBall, Ball* endBall){
 
 //
 void Line::SetUniformAddr(){
-    if (!s_shader.isInitialized())
+    if (!s_shader.IsInitialized())
         return;
 
-    _start_x_addr = glGetUniformLocation(s_shader.GetID(), "startX");
-    _start_y_addr = glGetUniformLocation(s_shader.GetID(), "startY");
-    _end_x_addr = glGetUniformLocation(s_shader.GetID(), "endX");
-    _end_y_addr = glGetUniformLocation(s_shader.GetID(), "endY");
-    _start_diameter_addr = glGetUniformLocation(s_shader.GetID(), "startDiameter");
-    _end_diameter_addr = glGetUniformLocation(s_shader.GetID(), "endDiameter");
+    _uniform.start_x = s_shader.GetUniform("startX");
+    _uniform.start_y = s_shader.GetUniform("startY");
+    _uniform.end_x = s_shader.GetUniform("endX");
+    _uniform.end_y = s_shader.GetUniform("endY");
+    _uniform.start_diameter = s_shader.GetUniform("startDiameter");
+    _uniform.end_diameter = s_shader.GetUniform("endDiameter");
 
 }
 
@@ -63,7 +61,7 @@ void Line::Update(){ // ...
 }
 
 void Line::Draw(){
-    if (!s_shader.isInitialized())
+    if (!s_shader.IsInitialized())
         return;
 
     if (!_startBall || !_endBall) //if either is nullptr, do not render
@@ -79,13 +77,13 @@ void Line::Draw(){
 
     s_shader.Use();
 
-    glUniform1f(_start_x_addr, startX);
-    glUniform1f(_start_y_addr, startY);
-    glUniform1f(_end_x_addr, endX);
-    glUniform1f(_end_y_addr, endY);
+    glUniform1f(_uniform.start_x, startX);
+    glUniform1f(_uniform.start_y, startY);
+    glUniform1f(_uniform.end_x, endX);
+    glUniform1f(_uniform.end_y, endY);
 
-    glUniform1f(_start_diameter_addr, startDiameter);
-    glUniform1f(_end_diameter_addr, endDiameter);
+    glUniform1f(_uniform.start_diameter, startDiameter);
+    glUniform1f(_uniform.end_diameter, endDiameter);
 
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, 6);
