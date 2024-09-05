@@ -6,6 +6,8 @@ Line::Line() : _startBall(nullptr), _endBall(nullptr)
 {
     s_shader.Init("shaders/line.vs", "shaders/line.fs");
 
+    //TO DO: Move these into a single static variable
+
     vao = Global.GetDefaultVAO();
 
     SetUniformAddr();
@@ -66,7 +68,14 @@ void Line::Draw(){
 }
 
 float Line::GetZ(){
-    return 0.0f;
+    if (!_startBall || !_endBall)
+        return 0.0f;
+
+    //In Original Petz games, each line is rendered behind both the ballz which are connected to it;
+    //bigger Z value means "further" from the screen, therefore the maximum Z is chosen
+    float zindex = std::max(_startBall->GetZ(), _endBall->GetZ()) + 0.5;
+
+    return zindex;
 }
 
 
