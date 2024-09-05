@@ -6,8 +6,6 @@ Line::Line() : _startBall(nullptr), _endBall(nullptr)
 {
     s_shader.Init("shaders/line.vs", "shaders/line.fs");
 
-    //TO DO: Move these into a single static variable
-
     vao = Global.GetDefaultVAO();
 
     SetUniformAddr();
