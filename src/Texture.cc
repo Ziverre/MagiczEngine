@@ -10,7 +10,6 @@ Texture::Texture()
 }
 
 void Texture::Init(std::string fileName){
-    //TO DO: Implement the actual IO (currently mimicking)
 
     Bitmap bmp;
 
