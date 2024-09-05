@@ -6,8 +6,6 @@ Ball::Ball()
 {
     s_shader.Init("shaders/ball.vs", "shaders/ball.fs");
 
-    //TO DO: Move these into a single static variable
-
     _x = 320; _y = 240; _z = 0;
 
     vao = Global.GetDefaultVAO();
