@@ -10,6 +10,8 @@
 #include <SDL2/SDL_opengl.h>
 #include <gl/glu.h>
 
+#include "Global.h"
+
 #include "Shader.h"
 #include "Ball.h"
 #include "Line.h"
@@ -54,6 +56,7 @@ int main( int argc, char * argv[] )
     if( glewError != GLEW_OK )
     {
         std::cout << "Failed to initialize GLEW:\n" << glewGetErrorString(glewError) << std::endl;
+        return -1;
     }
 
     //Use Vsync
@@ -65,6 +68,9 @@ int main( int argc, char * argv[] )
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    //-------------------------------------------------------------------------
+
+    Global.Configure();
 
     //-------------------------------------------------------------------------
 

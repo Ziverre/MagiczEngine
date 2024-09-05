@@ -1,7 +1,10 @@
 #ifndef OPZ_DRAWABLE_H
 #define OPZ_DRAWABLE_H
 
+#include "Global.h"
+
 #include "Shader.h"
+
 
 class Drawable
 {
