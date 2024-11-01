@@ -4,10 +4,10 @@
 #include <iostream>
 #include <string>
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-#include <gl/glu.h>
+#include <GL/glu.h>
 
 class Texture
 {
