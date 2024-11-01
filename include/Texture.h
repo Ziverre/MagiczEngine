@@ -4,10 +4,10 @@
 #include <iostream>
 #include <string>
 
-#include <GL/glew.h>
+#include <gl/glew.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-#include <GL/glu.h>
+#include <gl/glu.h>
 
 class Texture
 {
@@ -24,8 +24,12 @@ class Texture
     protected:
 
     private:
+
+        void _Generate_2D_GL_Texture(int *id){}; //TO DO: Give it a task
+        void _Generate_Grayscale_Bitmap();
+
         bool _initialized;
-        unsigned int _id;
+        unsigned int _id, _grayscale_id;
 };
 
 #endif // OPZ_TEXTURE_H
