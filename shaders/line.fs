@@ -25,7 +25,7 @@ void main(){
 	
 	//texture
 	
-	vec2 texUV = fract(translate / vec2(64.0));
+	vec2 texUV = fract(translate / vec2(128.0));
 	
 	//
 	
@@ -43,5 +43,5 @@ void main(){
 	alpha = step(0., translate.x) * step(translate.x, distance);
 	alpha *= step(-startDiameter/2.0 - girth, translate.y) * step(translate.y, startDiameter/2.0 + girth);
 	
-    fragColor = vec4(texture(petTexture, texUV).bgr, alpha);
+    fragColor = vec4(texture(petTexture, texUV).rgb, alpha);
 }

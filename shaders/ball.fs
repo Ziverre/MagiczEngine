@@ -1,5 +1,3 @@
-//TO DO: Clean up code and make it more readable
-
 #version 330
 
 out vec4 fragColor;
@@ -29,10 +27,11 @@ void main(){
 
 	vec2 uv = fract((gl_FragCoord.xy - vec2(centerX + radius + 10.0, centerY + radius)) / vec2(radius * 2.0 + 10.0, radius * 2.0)); // what the fuck is this?
 	//apparently not using floor() shits into the quality of displayed texture
-	vec2 texUV = fract((gl_FragCoord.xy - floor(vec2(centerX + radius + 10.0, centerY + radius))) / vec2(64.0));
+	vec2 texUV = fract((gl_FragCoord.xy - floor(vec2(centerX + radius + 10.0, centerY + radius))) / vec2(128.0));
 	//texUV.y = 1.0 - texUV.y;
 	
 	float circ = circle(vec2(centerX, centerY), coord, radius);
-    //vec3 col = mix(vec3(uv.x, uv.y, 1.0 - uv.x*uv.y), vec3(1.0, 1.0, 1.0), 0.5);
-	fragColor = vec4(texture(petTexture, texUV).bgr, circ);
+	vec4 color = vec4(texture(petTexture, texUV).rgb, circ);
+    
+	fragColor = color;
 }
