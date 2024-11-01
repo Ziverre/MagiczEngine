@@ -10,6 +10,7 @@ Texture::Texture()
 }
 
 void Texture::Init(std::string fileName){
+    //TO DO: Implement the actual IO (currently mimicking)
 
     Bitmap bmp;
 
@@ -34,8 +35,6 @@ void Texture::Init(std::string fileName){
         data = transparentData;
     }
 
-
-
     glGenTextures(1, &_id);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _id);
@@ -45,7 +44,8 @@ void Texture::Init(std::string fileName){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    //I have been using OpenGL for months now, yet never realized that GL_BGR exists until now. What a shame.
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
 
 }
 
@@ -57,6 +57,10 @@ bool Texture::isInitialized(){
 void Texture::Use(){
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _id);
+}
+
+void Texture::_Generate_Grayscale_Bitmap(){
+
 }
 
 Texture::~Texture()

@@ -2,17 +2,25 @@
 
 _Global Global;
 
-void _Global::Configure(){
+void _Global::Configure(int width, int height){
     //Call this before using any of MagiczEngine objects :)
     //MUST BE CALLED AFTER CREATION OF OPENGL CONTEXT, OTHERWISE IT IS UNDEFINED BEHAVIOR
-    SetDefaultVAO();
+    _SetDefaultVAO();
+
+    _width = width;
+    _height = height;
 }
 
 unsigned int _Global::GetDefaultVAO(){
     return _default_vao;
 }
 
-void _Global::SetDefaultVAO(){
+void _Global::RestoreViewport(){
+    //Do you ever wish doing certain things were as simple as this?
+    glViewport(0, 0, _width, _height);
+}
+
+void _Global::_SetDefaultVAO(){
     float vertices[] = {
          1.0f,  1.0f,
          1.0f, -1.0f,
