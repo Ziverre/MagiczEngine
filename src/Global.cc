@@ -17,6 +17,7 @@ unsigned int _Global::GetDefaultVAO(){
 
 void _Global::RestoreViewport(){
     //Do you ever wish doing certain things were as simple as this?
+    std::cout << "yo" << std::endl;
     glViewport(0, 0, _width, _height);
 }
 

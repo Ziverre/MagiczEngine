@@ -11,9 +11,12 @@ Texture::Texture()
     _initialized = false; // :)
     _width = 0; _height = 0; _fbo = 0;
 
+    _vao = Global.GetDefaultVAO();
+
     glGenTextures(1, &_id);
 
     _InitShaders();
+
     //_GenerateFBO();
 
 }
@@ -101,6 +104,28 @@ void Texture::Use(){
 
 void Texture::_GenerateFBO(){
     glGenFramebuffers(1, &_fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, _fbo);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _id, 0);
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE){
+
+        std::cout << "Framebuffer is ready." << std::endl;
+    }else{
+        std::cout << "You fucked up." << std::endl;
+    }
+
+    glViewport(0, 0, _width, _height);
+    if (s_rgba_shader.IsInitialized()){
+
+        s_rgba_shader.Use();
+
+        glBindVertexArray(_vao);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+    }
+    Global.RestoreViewport();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0); //and pray that it works
 
 }
 
