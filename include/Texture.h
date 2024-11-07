@@ -39,7 +39,7 @@ class Texture
         void _GenerateFBO();
         void _InitShaders();
 
-        unsigned int _id, _fbo;
+        unsigned int _id, _fbo, _vao;
         int _width, _height;
 
         bool _initialized;
