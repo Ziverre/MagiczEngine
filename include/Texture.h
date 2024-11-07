@@ -9,13 +9,23 @@
 #include <SDL2/SDL_opengl.h>
 #include <gl/glu.h>
 
+#include "Global.h"
+#include "Shader.h"
+
 class Texture
 {
     public:
+        static Shader s_rgba_shader;
+
         Texture();
 
         void Init(std::string filename);
+        void InitBlankState(); //Generates a "blank state texture"
+
+
         bool isInitialized();
+
+        //State setters
 
         void Use();
 
@@ -26,10 +36,13 @@ class Texture
     private:
 
         void _Generate_2D_GL_Texture(int *id){}; //TO DO: Give it a task
-        void _Generate_Grayscale_Bitmap();
+        void _GenerateFBO();
+        void _InitShaders();
+
+        unsigned int _id, _fbo;
+        int _width, _height;
 
         bool _initialized;
-        unsigned int _id, _grayscale_id;
 };
 
 #endif // OPZ_TEXTURE_H

@@ -1,10 +1,10 @@
 #ifndef OPZ_SHADER_H
 #define OPZ_SHADER_H
 
-#include <GL/glew.h>
+#include <gl/glew.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-#include <GL/glu.h>
+#include <gl/glu.h>
 
 #include <fstream>
 #include <iostream>

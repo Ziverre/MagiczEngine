@@ -76,7 +76,8 @@ int main( int argc, char * argv[] )
 
     Texture tex;
 
-    tex.Init("art/texture/hair24.bmp");
+    //tex.Init("art/texture/hair24.bmp");
+    tex.InitBlankState();
     tex.Use();
 
 
