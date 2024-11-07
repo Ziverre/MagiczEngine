@@ -108,6 +108,8 @@ int main( int argc, char * argv[] )
 
     //
 
+    Global.RestoreViewport();
+
     while (running){
         while (SDL_PollEvent(&event))
         {
@@ -117,7 +119,7 @@ int main( int argc, char * argv[] )
             }
         }
 
-        glViewport(0, 0, width, height);
+        //glViewport(0, 0, width, height);
         glClearColor( 156.f / 255.f, 226.f/255.f, 218.f/255.f, 1.f );
         glClear(GL_COLOR_BUFFER_BIT);
 
