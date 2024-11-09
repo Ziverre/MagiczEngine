@@ -2,8 +2,6 @@
 
 #include "Texture.h"
 
-#include "Bitmap.h"
-
 Shader Texture::s_rgba_shader;
 
 Texture::Texture()
@@ -16,8 +14,6 @@ Texture::Texture()
     glGenTextures(1, &_id);
 
     _InitShaders();
-
-    //_GenerateFBO();
 
 }
 
