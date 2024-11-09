@@ -74,11 +74,20 @@ int main( int argc, char * argv[] )
 
     //-------------------------------------------------------------------------
 
+    Palette pal;
     Texture tex;
 
     //tex.Init("art/texture/hair24.bmp");
+
+    //Test the waters
+
+    pal.Load("Resource/palettes/ODDBALLZ.BMP");
+
     tex.InitBlankState();
     tex.Use();
+
+    //wee woo wee woo
+    pal.Use();
 
 
     //Spooky* Scary* Skeletons* (to do: do it better)
@@ -90,8 +99,8 @@ int main( int argc, char * argv[] )
     Ball* ball1 = new Ball();
     Ball* ball2 = new Ball();
 
-    ball1->SetDiameter(200);
-    ball2->SetDiameter(200);
+    ball1->SetDiameter(256);
+    ball2->SetDiameter(256);
 
     ball1->SetCoords(150.f, 200.f, 0.f);
     ball2->SetCoords(490.f, 200.f, 0.f);
