@@ -11,6 +11,19 @@
 
 #include "Global.h"
 #include "Shader.h"
+#include "Bitmap.h"
+#include "Palette.h"
+
+//TEXTURE PAGE
+struct sTexturePage {
+
+    unsigned int _text_id;
+    unsigned int _fbo_id;
+
+    //Use IF Texture is in 256 color palette format
+    float _palette_index;
+};
+
 
 class Texture
 {
@@ -35,7 +48,7 @@ class Texture
 
     private:
 
-        void _Generate_2D_GL_Texture(int *id){}; //TO DO: Give it a task
+        //void _Generate_2D_GL_Texture(unsigned int id, int width, int height, void* data){}; //TO DO: Give it a task
         void _GenerateFBO();
         void _InitShaders();
 
