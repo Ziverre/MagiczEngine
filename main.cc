@@ -81,7 +81,7 @@ int main( int argc, char * argv[] )
 
     //Test the waters
 
-    pal.Load("Resource/palettes/petz.BMP");
+    pal.Load("Resource/palettes/PETZ.BMP");
 
     tex.InitBlankState();
     tex.Use();
