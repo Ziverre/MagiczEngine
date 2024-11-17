@@ -19,6 +19,7 @@ class Bitmap
         void GetSize(int* width, int* height);
 
         void* GetData();
+        void* GetPalette();
 
         virtual ~Bitmap();
 
@@ -29,7 +30,9 @@ class Bitmap
     private:
         std::vector<char> _data;
         int _width, _height;
-        bool _readable;
+        bool _readable, _has_palette;
+
+        char _palette[256 * 4];
 };
 
 #endif // OPZ_BITMAP_H

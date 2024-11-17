@@ -1,10 +1,8 @@
 #ifndef OPZ_GLOBAL_H
 #define OPZ_GLOBAL_H
 
-#include <gl/glew.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
-#include <gl/glu.h>
+#include <GL/glew.h>
+#include <GL/glu.h>
 
 #include <iostream>
 

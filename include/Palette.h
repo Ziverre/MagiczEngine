@@ -1,12 +1,12 @@
 #ifndef OPZ_PALETTE_H
 #define OPZ_PALETTE_H
 
+#include <GL/glew.h>
+#include <GL/glu.h>
+
 #include <string>
 #include <fstream>
 #include <iostream>
-
-#include <gl/glew.h>
-#include <gl/glu.h>
 
 class Palette
 {

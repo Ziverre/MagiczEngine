@@ -4,10 +4,8 @@
 #include <iostream>
 #include <string>
 
-#include <gl/glew.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
-#include <gl/glu.h>
+#include <GL/glew.h>
+#include <GL/glu.h>
 
 #include "Global.h"
 #include "Shader.h"
