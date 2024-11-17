@@ -1,6 +1,6 @@
 #include "Bitmap.h"
 
-Bitmap::Bitmap() :  _width(0), _height(0), _readable(false)
+Bitmap::Bitmap() :  _width(0), _height(0), _readable(false), _has_palette(false)
 {
     //ctor
 }
@@ -47,8 +47,8 @@ void Bitmap::ReadBMP(std::string fileName)
         int bitCount = 0;
         file.read((char*)&bitCount, 2);
 
-        if (bitCount != 24){
-            std::cout << "[BMP ERROR] Only BitCount = 24 is supported" << std::endl;
+        if (bitCount != 8 && bitCount != 24){
+            std::cout << "[BMP ERROR] Only BitCount = 8 and 24 are supported" << std::endl;
             return;
 		}
 
@@ -62,12 +62,35 @@ void Bitmap::ReadBMP(std::string fileName)
 
         file.ignore(20);
 
-        //testing if i reached raster
-        char tempData = 0;
 
-        for (int i = 0; i < (_width * _height) * 3; i++){
-            file.read(&tempData, 1);
-            _data.push_back(tempData);
+        if (bitCount == 8){
+
+            //bitCount of 8 indicates that the BMP file contains 256 * 4 bytes of palette data.
+
+            //TO DO: stop being narrow minded and try out file.read(_palette, 256 * 4);
+            for (int byteIndex = 0; byteIndex < (256 * 4); byteIndex++){
+                file.read(&_palette[byteIndex], 1);
+            }
+
+            _has_palette = true;
+
+            //bitCount == 8 means that it is 8 bit per texel, each referencing a texel on the palette
+            char rasterData = 0;
+
+            for (int i = 0; i < (_width * _height); i++){
+                file.read(&rasterData, 1);
+                _data.push_back(rasterData);
+            }
+
+        } else { //if bitCount == 24
+
+            //I am still bothered by this little shit. But eh, if it works fine.
+            char rasterData = 0;
+
+            for (int i = 0; i < (_width * _height) * 3; i++){
+                file.read(&rasterData, 1);
+                _data.push_back(rasterData);
+            }
         }
 
 
@@ -94,6 +117,12 @@ void* Bitmap::GetData(){
     return _data.data();
 }
 
+void* Bitmap::GetPalette(){
+    if (!_readable || !_has_palette)
+        return nullptr;
+
+    return &_palette;
+}
 
 Bitmap::~Bitmap()
 {

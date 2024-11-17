@@ -4,6 +4,7 @@ Palette::Palette()
 {
     //ctor
     _loaded = false;
+    _tex_id = 0;
 }
 
 bool Palette::Load(std::string fileName){
