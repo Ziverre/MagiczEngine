@@ -81,13 +81,18 @@ int main( int argc, char * argv[] )
 
     //Test the waters
 
-    pal.Load("Resource/palettes/PETZ.BMP");
+    pal.Load("Resource/palettes/CATZ.BMP");
 
     tex.InitBlankState();
+    tex.SetPalette(&pal);
+    tex.SetPaletteIndex(68);
+
+    tex.Generate();
+
     tex.Use();
 
     //wee woo wee woo
-    pal.Use();
+    //pal.Use();
 
 
     //Spooky* Scary* Skeletons* (to do: do it better)
@@ -99,8 +104,8 @@ int main( int argc, char * argv[] )
     Ball* ball1 = new Ball();
     Ball* ball2 = new Ball();
 
-    ball1->SetDiameter(256);
-    ball2->SetDiameter(256);
+    ball1->SetDiameter(128);
+    ball2->SetDiameter(128);
 
     ball1->SetCoords(150.f, 200.f, 0.f);
     ball2->SetCoords(490.f, 200.f, 0.f);
