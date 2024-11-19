@@ -1,8 +1,9 @@
 #ifndef OPZ_BALL_H
 #define OPZ_BALL_H
 
-#include "Drawable.h"
 #include <cmath>
+
+#include "Drawable.h"
 
 struct sBallUniformAddress {
     int diameter = -1;

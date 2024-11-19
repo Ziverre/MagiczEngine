@@ -8,6 +8,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "Bitmap.h"
+
 class Palette
 {
     public:
@@ -23,13 +25,11 @@ class Palette
 
     private:
 
-        void _Generate_GL_Texture();
-        bool _ReadFile(std::string fileName);
+        void _Generate_GL_Texture(void* bitmap);
 
         bool _loaded;
 
         unsigned int _tex_id;
-        char _data[256 * 4]; //TO DO: *Probably* make it so it gets garbage collected
 };
 
 #endif // OPZ_PALETTE_H

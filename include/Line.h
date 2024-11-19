@@ -1,11 +1,11 @@
 #ifndef OPZ_LINE_H
 #define OPZ_LINE_H
 
-#include "Drawable.h"
-#include "Ball.h"
-
 #include <cmath>
 #include <iostream>
+
+#include "Drawable.h"
+#include "Ball.h"
 
 struct sLineUniformAddress {
     int start_x = -1;

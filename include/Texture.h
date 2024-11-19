@@ -12,6 +12,10 @@
 #include "Bitmap.h"
 #include "Palette.h"
 
+struct sIndexedTexture {
+    int index = -1;
+};
+
 //TEXTURE PAGE
 struct sTexturePage {
 
@@ -27,6 +31,7 @@ class Texture
 {
     public:
         static Shader s_rgba_shader;
+        static Shader s_indexed_shader;
 
         Texture();
 
@@ -37,6 +42,10 @@ class Texture
         bool isInitialized();
 
         //State setters
+        void SetPalette(Palette* palette);
+        void SetPaletteIndex(int index);
+
+        void Generate();
 
         void Use();
 
@@ -50,8 +59,12 @@ class Texture
         void _GenerateFBO();
         void _InitShaders();
 
+        Palette* _palette = nullptr; //pointer because a texture doesn't need to create its own palette internally (sharing is caring)
+
+        sIndexedTexture _uniform_indexed;
         unsigned int _id, _fbo, _vao;
         int _width, _height;
+        int _palette_index = 35;
 
         bool _initialized;
 };
