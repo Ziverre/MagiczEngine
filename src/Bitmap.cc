@@ -11,6 +11,7 @@ void Bitmap::ReadBMP(std::string fileName)
     file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
     //fuck the performance, of course (TO DO: optimize this shit)
     try{
+
     	file.open(fileName, std::ios::in| std::ios::binary);
 
 		char signature[2] = {0, 0};
@@ -92,7 +93,6 @@ void Bitmap::ReadBMP(std::string fileName)
                 _data.push_back(rasterData);
             }
         }
-
 
 	}catch(std::ifstream::failure& e){
         perror("[BMP ERROR] Failed to process file: ");

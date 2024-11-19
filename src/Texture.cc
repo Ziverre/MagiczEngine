@@ -3,6 +3,7 @@
 #include "Texture.h"
 
 Shader Texture::s_rgba_shader;
+Shader Texture::s_indexed_shader;
 
 Texture::Texture()
 {
@@ -86,12 +87,60 @@ void Texture::InitBlankState(){
 
 void Texture::_InitShaders(){
     s_rgba_shader.Init("shaders/texture/texture.vs", "shaders/texture/rgba.fs");
+    s_indexed_shader.Init("shaders/texture/texture.vs", "shaders/texture/indexed.fs");
+
+    _uniform_indexed.index = s_indexed_shader.GetUniform("index");
 }
 
 bool Texture::isInitialized(){
     return _initialized;
 }
 
+//-------------------------------------------------------------------
+
+void Texture::SetPalette(Palette* palette){
+    _palette = palette;
+
+}
+
+void Texture::SetPaletteIndex(int index){
+    _palette_index = index;
+
+}
+
+void Texture::Generate(){
+
+    glBindFramebuffer(GL_FRAMEBUFFER, _fbo);
+
+    glViewport(0, 0, _width, _height);
+
+    if (s_indexed_shader.IsInitialized()){
+
+        s_indexed_shader.Use();
+
+        _palette->Use();
+        glUniform1f(_uniform_indexed.index, static_cast<float>(_palette_index));
+        std::cout << static_cast<float>(_palette_index) << std::endl;
+
+        glBindVertexArray(_vao);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+    }
+
+    /*if (s_rgba_shader.IsInitialized()){
+
+        s_rgba_shader.Use();
+
+        glBindVertexArray(_vao);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+    }*/
+    Global.RestoreViewport();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0); //and pray that it works
+}
+
+//-------------------------------------------------------------------
 
 void Texture::Use(){
     glActiveTexture(GL_TEXTURE0);
