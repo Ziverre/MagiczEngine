@@ -27,7 +27,7 @@ void main(){
 
 	vec2 uv = fract((gl_FragCoord.xy - vec2(centerX + radius + 10.0, centerY + radius)) / vec2(radius * 2.0 + 10.0, radius * 2.0)); // what the fuck is this?
 	//apparently not using floor() shits into the quality of displayed texture
-	vec2 texUV = fract((gl_FragCoord.xy - floor(vec2(centerX + radius + 10.0, centerY + radius))) / vec2(128.0));
+	vec2 texUV = fract((gl_FragCoord.xy - floor(vec2(centerX + radius + 10.0, centerY + radius))) / vec2(256.0));
 	//texUV.y = 1.0 - texUV.y;
 	
 	float circ = circle(vec2(centerX, centerY), coord, radius);
